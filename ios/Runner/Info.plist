@@ -43,5 +43,21 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+    <!-- Flutter Uploader config   -->
+    <key>FUMaximumConnectionsPerHost</key>
+    <integer>5</integer>
+    <key>FUMaximumUploadOperation</key>
+    <integer>3</integer>
+    <key>NSCameraUsageDescription</key>
+    <string>app needs to access to camera</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>app needs to access to microphone</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>app needs to access to photo library</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
 </dict>
 </plist>

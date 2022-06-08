@@ -1,9 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutter_upload">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
    <application
         android:label="flutter_upload"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:networkSecurityConfig="@xml/network_security_config">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -11,7 +16,8 @@
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
-            android:windowSoftInputMode="adjustResize">
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true">
             <!-- Specifies an Android theme to apply to this Activity as soon as
                  the Android process has started. This theme is visible to the user
                  while the Flutter UI initializes. After that, this theme continues
@@ -30,5 +36,24 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+       <!--    Flutter Uploader -->
+       <provider
+           android:name="androidx.work.impl.WorkManagerInitializer"
+           android:authorities="${applicationId}.workmanager-init"
+           android:enabled="false"
+           android:exported="false" />
+
+       <provider
+           android:name="com.bluechilli.flutteruploader.FlutterUploaderInitializer"
+           android:authorities="${applicationId}.flutter-uploader-init"
+           android:exported="false">
+           <meta-data
+               android:name="com.bluechilli.flutteruploader.MAX_CONCURRENT_TASKS"
+               android:value="5" />
+           <meta-data
+               android:name="com.bluechilli.flutteruploader.UPLOAD_CONNECTION_TIMEOUT_IN_SECONDS"
+               android:value="3600" />
+       </provider>
+
     </application>
 </manifest>
